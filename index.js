@@ -4,15 +4,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const socket = require("socket.io");
-const { Socket } = require("dgram");
-const { static } = require("express");
-const express = require("express");
-const path = require("path");
-const app = express();
-const socket = require("socket.io");
 let socketlist=new Array();
-
-
 const PORT =process.env.PORT || 3000;
 
 const server = app.listen(PORT, ()=>{
