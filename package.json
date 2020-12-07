@@ -1,0 +1,24 @@
+{
+  "name": "myboard",
+  "version": "1.0.0",
+  "description": "Collaborative white board for ICC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BharadwajSairam/MyBoard.git"
+  },
+  "keywords": [
+    "Collab",
+    "drawing",
+    "board"
+  ],
+  "author": "Sairam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BharadwajSairam/MyBoard/issues"
+  },
+  "homepage": "https://github.com/BharadwajSairam/MyBoard#readme"
+}
