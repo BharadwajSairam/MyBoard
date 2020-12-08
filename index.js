@@ -7,7 +7,7 @@ const socket = require("socket.io");
 let socketlist=[];let canvasList=[];
 let leader;var dict=[],userList=[];
 let infavour=0,against=0;
-const PORT =process.env.PORT || 3000;
+const PORT =process.env.PORT || 8080;
 const server = app.listen(PORT, ()=>{
     console.log(`the server is running on port ${PORT}`)
 })
