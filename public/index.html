@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+    <!--link rel="stylesheet" href="./style.css"-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA==" crossorigin="anonymous"></script>
     <title>Canvas API</title>
 </head>
@@ -17,10 +17,11 @@
         <button class="colors"  style="background-color: red; color: white;">Red</button>
         <button class="colors"  style="background-color: blue; color: white;">Blue</button>
         <button class="colors"  style="background-color: yellow; color: black;">yellow</button>
-        <button id="elect">Elect</button>
+        <button id="elect" onclick="elect()">Elect</button>
         <img id="im" src=""></img>
     </div>
-
+    <h3>Current Users:</h3>
+    <div id="userList"></div>
     <script src="./canvas.js"></script>
 </body>
 </html>

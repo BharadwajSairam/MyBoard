@@ -1,9 +1,34 @@
 const socket = io();
 
 socket.emit("hello", "some data");
+document.getElementById("clear").disabled = true;
+        document.getElementById("elect").disabled = true;
 
+ window.addEventListener("load", ()=>{
+    var person = prompt("Please enter your name", "user");
+    socket.emit("user",person);
+    console.log("user data sent");
+ })
+ socket.on("user",function(data){
+    console.log("userdata"+data);
+    var l=[];
+    l=data;
+    console.log(l[0].name);
+    var list = document.createElement('ul');
+    document.getElementById("userList").innerHTML='<ul></ul>';
+    for(i = 0; i < l.length; i++) {
+        // Create the list item:
+        var item = document.createElement('li');
+        console.log(l[i].name);
+        // Set its contents:
+        item.appendChild(document.createTextNode(l[i].name));
 
-// window.addEventListener("load", ()=>{
+        // Add it to the list:
+        list.appendChild(item);
+    }
+
+    document.getElementById('userList').appendChild(list);
+ })
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
     // document
@@ -34,7 +59,17 @@ socket.emit("hello", "some data");
         color = string;
     }
 
-
+    function elect() {
+       
+        socket.emit("startvote");
+        console.log("emitted vote call to server");
+        /*if (r == true) {
+          txt = "You pressed OK!";
+        } else {
+          txt = "You pressed Cancel!";
+        }*/
+        
+      }
 
     const startPosition =(x,y,peerColor)=>{
         console.log(tool)
@@ -161,17 +196,20 @@ socket.emit("hello", "some data");
     canvas.addEventListener("mousemove", drawFunc);
 
 
-    const elect=document.querySelector("#elect");
+    const elec=document.querySelector("#elect");
     const im=document.querySelector("#im");
-    elect.addEventListener("click",function(){
-        console.log("---");
-        const dataURL=canvas.toDataURL();
-        
-         im.src=dataURL;
-    })
+    elec.addEventListener("click",elect);
     socket.on("get",function(){
         console.log("client get");
         socket.emit("get",canvas.toDataURL());
+        console.log("emitted dataurl to server");
+        document.getElementById("clear").disabled = false;
+        document.getElementById("elect").disabled = false;
+    })
+    socket.on("save",function(){
+        
+        socket.emit("save",canvas.toDataURL());
+        console.log("emitted dataurl to save call");
     })
 
     socket.on("init",function(data){
@@ -184,4 +222,10 @@ socket.emit("hello", "some data");
         }
         img.src=data;       
         
+    })
+
+    socket.on("startvote",function(){
+        var txt;
+        var r = confirm("Do you want to save this drawing ? :");
+        socket.emit("myvote",r);
     })
