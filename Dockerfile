@@ -1,6 +1,7 @@
-FROM node:9-slim
-WORKDIR /index
-COPY package.json /index
+FROM node:7
+WORKDIR /app
+COPY package.json /app
 RUN npm install
-COPY . /index
-CMD ["npm","start"]
+COPY . /app
+CMD node index.js
+EXPOSE 8080 
