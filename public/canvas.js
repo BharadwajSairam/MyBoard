@@ -199,6 +199,7 @@ document.getElementById("clear").disabled = true;
     const elec=document.querySelector("#elect");
     const im=document.querySelector("#im");
     elec.addEventListener("click",elect);
+    
     socket.on("get",function(){
         console.log("client get");
         socket.emit("get",canvas.toDataURL());
@@ -206,9 +207,14 @@ document.getElementById("clear").disabled = true;
         document.getElementById("clear").disabled = false;
         document.getElementById("elect").disabled = false;
     })
+    
     socket.on("save",function(){
-        
+       /* var link = document.getElementById('link');
+        link.setAttribute('download', 'image.png');
+        link.setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+        link.click();*/
         socket.emit("save",canvas.toDataURL());
+        //socket.emit("test",canvas.toBuffer('image/png'));
         console.log("emitted dataurl to save call");
     })
 
@@ -226,6 +232,22 @@ document.getElementById("clear").disabled = true;
 
     socket.on("startvote",function(){
         var txt;
-        var r = confirm("Do you want to save this drawing ? :");
-        socket.emit("myvote",r);
+        //var r = confirm("Do you want to save this drawing ? :");
+        socket.emit("myvote",confirm("Do you want to save this drawing ? :"));
+    })
+
+    document.getElementById("savedCanvas").addEventListener("click", function(){
+        socket.emit("show","image");
+        console.log("clicked on saved canvas");
+    });
+    socket.on("show",function(data){
+        console.log("show called"+data);
+        const canva=document.getElementById("canva");
+        const ctx1 = canva.getContext("2d");
+        const img=new Image();
+        img.onload=function(){
+            ctx1.drawImage(img,0,0);
+        }
+        img.src=data;       
+
     })

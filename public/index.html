@@ -8,7 +8,12 @@
     <title>Canvas API</title>
 </head>
 <body>
-    <canvas id="canvas"></canvas>
+    <div style="width: 100%; overflow: hidden;">
+        <div style="width: 600px; float: left;"> <canvas id="canvas"></canvas> </div>
+        <div style="margin-left: 620px;"> <canvas id="canva"></canvas> </div>
+   </div>
+    
+    
     <div class="controls">
         <button id="draw">Draw</button>
         <button id="erase">Erase</button>
@@ -18,8 +23,10 @@
         <button class="colors"  style="background-color: blue; color: white;">Blue</button>
         <button class="colors"  style="background-color: yellow; color: black;">yellow</button>
         <button id="elect" onclick="elect()">Elect</button>
+        <button id="savedCanvas">Latest saved canvas</button>
         <img id="im" src=""></img>
     </div>
+    <a id='link'></a>
     <h3>Current Users:</h3>
     <div id="userList"></div>
     <script src="./canvas.js"></script>
